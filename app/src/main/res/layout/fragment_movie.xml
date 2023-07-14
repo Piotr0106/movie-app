@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+<data>
+    <variable
+        name="viewModel"
+        type="com.example.movieapp.ui.MovieViewModel" />
+</data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,7 +27,8 @@
                 android:layout_width="352dp"
                 android:layout_height="512dp"
                 android:layout_gravity="center_horizontal"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@{viewModel.moviesData.results.get(0).component1().url}"/>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -34,7 +40,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="@string/title"
+            android:text="@{viewModel.moviesData.results.get(0).component2().text}"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -46,7 +52,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="@string/date"
+            android:text="@{String.valueOf(viewModel.moviesData.results.get(0).component3().year)}"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -61,7 +67,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:srcCompat="@drawable/refresh" />
+                app:srcCompat="@drawable/refresh"
+                android:onClick="@{()->viewModel.getMovie()}"/>
 
             <Space
                 android:layout_width="0dp"

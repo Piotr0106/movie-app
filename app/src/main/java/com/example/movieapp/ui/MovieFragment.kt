@@ -1,6 +1,5 @@
 package com.example.movieapp.ui
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,16 +23,17 @@ class MovieFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_movie, container, false
         )
-        val imageUrl =
-            "https://m.media-amazon.com/images/M/MV5BMDg2NzQwOGMtMGRkNC00YjAwLTg4NjgtZWQwYzljZmM1YzA4XkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg"
-        Picasso.get().load(imageUrl).into(binding.movieImage);
+        viewModel = MovieViewModel()
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.movieImage.observe(viewLifecycleOwner) { imageUrl ->
+            Picasso.get().load(imageUrl).into(binding.movieImage)
+        }
 
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
-    }
+
 
 }
