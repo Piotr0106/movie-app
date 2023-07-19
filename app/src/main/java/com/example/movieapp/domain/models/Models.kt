@@ -1,8 +1,7 @@
 package com.example.movieapp.domain.models
 
-data class Movies(val entries: Long, val results: List<Result>)
-
-data class Result(
+data class Movies(val results: List<MovieItem>)
+data class MovieItem(
     val primaryImage: PrimaryImage,
     val titleText: TitleText,
     val releaseYear: ReleaseYear

@@ -1,19 +1,18 @@
 package com.example.movieapp.data
 
 typealias MoviesDomain = com.example.movieapp.domain.models.Movies
-typealias ResultDomain = com.example.movieapp.domain.models.Result
+typealias ResultDomain = com.example.movieapp.domain.models.MovieItem
 typealias PrimaryImageDomain = com.example.movieapp.domain.models.PrimaryImage
 typealias TitleTextDomain = com.example.movieapp.domain.models.TitleText
 typealias ReleaseYearDomain = com.example.movieapp.domain.models.ReleaseYear
 
 typealias MoviesData = com.example.movieapp.data.models.Movies
-typealias ResultData = com.example.movieapp.data.models.Result
+typealias ResultData = com.example.movieapp.data.models.MovieItem
 typealias PrimaryImageData = com.example.movieapp.data.models.PrimaryImage
 typealias TitleTextData = com.example.movieapp.data.models.TitleText
 typealias ReleaseYearData = com.example.movieapp.data.models.ReleaseYear
 
 fun MoviesData.toDomain(): MoviesDomain = MoviesDomain(
-    entries = entries,
     results = results.map { it.toDomain() }
 )
 

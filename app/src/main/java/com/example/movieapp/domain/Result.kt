@@ -7,5 +7,7 @@ sealed class Result<T> {
     companion object{
         @JvmStatic
         fun <T> withValue(data: T): Result<T> = OnSuccess(data)
+        @JvmStatic
+        fun <T> withError(error: Error): Result<T> = OnError(error)
     }
 }

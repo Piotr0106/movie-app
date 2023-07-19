@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.example.movieapp.ui.MovieFragment"
+        android:name="com.example.movieapp.ui.movie.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <action
+            android:id="@+id/goToFavoriteMovies"
+            app:destination="@id/favoriteMoviesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="com.example.movieapp.ui.favorite.FavoriteMoviesFragment"
+        android:label="FavoriteMoviesFragment"
+        tools:layout="@layout/fragment_favorite_movies"/>
 </navigation>
