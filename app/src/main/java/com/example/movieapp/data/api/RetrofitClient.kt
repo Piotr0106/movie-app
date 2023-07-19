@@ -1,4 +1,4 @@
-package com.example.movieapp.data
+package com.example.movieapp.data.api
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory

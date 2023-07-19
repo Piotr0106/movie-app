@@ -3,7 +3,7 @@
 <data>
     <variable
         name="viewModel"
-        type="com.example.movieapp.ui.MovieViewModel" />
+        type="com.example.movieapp.ui.movie.MovieViewModel" />
 </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,15 +12,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.MovieFragment">
-
+        tools:context=".ui.movie.MovieFragment"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:progress="@{viewModel.status}" />
         <com.google.android.material.card.MaterialCardView
             android:layout_width="352dp"
             android:layout_height="512dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:visibility="@{viewModel.status}">
 
             <ImageView
                 android:id="@+id/movie_image"
@@ -28,7 +36,8 @@
                 android:layout_height="512dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="centerCrop"
-                android:src="@{viewModel.moviesData.results.get(0).component1().url}"/>
+                android:imageDefault="@{@drawable/question_mark}"
+                android:imageUrl="@{viewModel.movieImage}" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -40,9 +49,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="@{viewModel.moviesData.results.get(0).component2().text}"
             android:textSize="28sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="@{viewModel.movieTitle}"
+            android:visibility="@{viewModel.status}"/>
 
         <TextView
             android:id="@+id/movie_date"
@@ -52,8 +62,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:gravity="center"
-            android:text="@{String.valueOf(viewModel.moviesData.results.get(0).component3().year)}"
-            android:textSize="20sp" />
+            android:text="@{String.valueOf(viewModel.movieYear)}"
+            android:textSize="20sp"
+            android:visibility="@{viewModel.status}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,7 +79,8 @@
                 android:layout_margin="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@drawable/refresh"
-                android:onClick="@{()->viewModel.getMovie()}"/>
+                android:onClick="@{()->viewModel.getMovie()}"
+                android:visibility="@{viewModel.status}"/>
 
             <Space
                 android:layout_width="0dp"
@@ -81,7 +93,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:srcCompat="@drawable/favorite_border" />
+                app:srcCompat="@drawable/favorite_border"
+                android:onClick="@{()->viewModel.addMovieToFavorites()}"
+                android:visibility="@{viewModel.status}" />
 
         </LinearLayout>
 
